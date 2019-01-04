@@ -1,12 +1,12 @@
 # Imports
-import picamera
+# import picamera
 import sys
 import time
 import RPi.GPIO as GPIO
 import os
 import json
-import tinys3
-import requests
+# import tinys3
+# import requests
 from time import gmtime, strftime
 
 # Variables
@@ -22,8 +22,8 @@ while True:
   input = GPIO.input(PIN)
 
   # If the last reading was low and this one high, record for 30 secs
-  if ((not prev_input) and input):
-    print (time)
+  if (not prev_input) and input:
+    print(time.time())
 
     # raspivid -o video.h264 -t 30000
     
