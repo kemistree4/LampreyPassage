@@ -43,4 +43,4 @@ while True:
   #send an email to my work email with time of detection (beam is broken)
   #make log file of all detections
   #continue recording if beam is broken past initial 30 secs
-  #save videos to a USB drive
+  #save videos to a USB drive#do nothing
