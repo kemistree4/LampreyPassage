@@ -25,7 +25,7 @@ while True:
   if ((not prev_input) and input):
     print (time)
 
-    raspivid -o video.h264 -t 30000
+    # raspivid -o video.h264 -t 30000
     
     # may also use?:
     #camera.start_recording('home/pi/video.h264)
