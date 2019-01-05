@@ -1,6 +1,6 @@
 # Imports
 from picamera import PiCamera
-from time import sleep
+import sleep
 import RPi.GPIO as GPIO
 # import tinys3
 # import requests
