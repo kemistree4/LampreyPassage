@@ -2,9 +2,6 @@
 from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
-# import tinys3
-# import requests
-# from time import gmtime, strftime
 
 # Variables
 camera = PiCamera()
@@ -22,7 +19,8 @@ while True:
 
     # If the last reading was low and this one high, record for 30 secs
     if not input == 1:
-        print(time.time())
+        print "Lamprey Detected!" + (time.time())
+        echo 'Lamprey Detected at (time.time())' | mail -s "Lamprey Detected" rikeem_sholes@fws.gov
         camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
         camera.stop_recording()
@@ -31,7 +29,7 @@ while True:
     time.sleep(0.05)
 
 #send an email to my work email with time of detection
-    #def send
+    
 #code also needs to:
   #send an email to my work email with time of detection (beam is broken)
   #make log file of all detections
