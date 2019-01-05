@@ -1,7 +1,6 @@
 # Imports
 from picamera import PiCamera
 import time
-import sleep
 import RPi.GPIO as GPIO
 # import tinys3
 # import requests
@@ -25,7 +24,7 @@ while True:
     if not prev_input == input:
         print(time.time())
         camera.start_recording ('/media/pi/Lexar/test_video/video.h264')
-        sleep(30)
+        time.sleep(30)
         camera.stop_recording
         if prev_input:
             print("recording video")
