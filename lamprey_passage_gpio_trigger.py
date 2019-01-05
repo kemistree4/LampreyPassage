@@ -20,7 +20,6 @@ while True:
     # If the last reading was low and this one high, record for 30 secs
     if not input == 1:
         print "Lamprey Detected!" + (time.time())
-        echo 'Lamprey Detected at (time.time())' | mail -s "Lamprey Detected" rikeem_sholes@fws.gov
         camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
         camera.stop_recording()
