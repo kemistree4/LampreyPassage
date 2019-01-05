@@ -23,9 +23,9 @@ while True:
     # If the last reading was low and this one high, record for 30 secs
     if not prev_input == input:
         print(time.time())
-        camera.start_recording ('/media/pi/Lexar/test_video/video.h264')
+        camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
-        camera.stop_recording
+        camera.stop_recording()
         if prev_input:
             print("recording video")
             
