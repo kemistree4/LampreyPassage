@@ -8,12 +8,12 @@ import RPi.GPIO as GPIO
 
 # Variables
 camera = PiCamera()
-PIN = 4                                # Pin we are using to read the door switch
+PIN = 4                                # Pin we are using to read the IR break beam switch
 prev_input = 0             # Variable to track if trigger beam is broken
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)          # GPIO layout mode      
-GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as an input
+GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
 
 # Loop checking the switch
 while True:
@@ -26,14 +26,7 @@ while True:
         camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
         camera.stop_recording()
-        if prev_input:
-            print("recording video")
-            
-    # may also use?:
-    #camera.start_recording('home/pi/video.h264)
-    #sleep(30)
-    #camera.stop_recording
-
+                    
     # Update previous input
     prev_input = input
     # Wait slightly for debounce
