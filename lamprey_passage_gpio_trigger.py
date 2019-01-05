@@ -1,5 +1,5 @@
 # Imports
-# from picamera import PiCamera
+from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
 
