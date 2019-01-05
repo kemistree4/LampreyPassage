@@ -1,5 +1,5 @@
 # Imports
-from picamera import PiCamera
+# from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
 
@@ -19,7 +19,8 @@ while True:
 
     # If the last reading was low and this one high, record for 30 secs
     if not input == 1:
-        print(time.time()) 
+        print(time.time())
+        print 'Lamprey Detected'
         camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
         camera.stop_recording()
