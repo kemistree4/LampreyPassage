@@ -21,7 +21,7 @@ while True:
     # If the GPIO reading goes from high to low, record for 30 secs
     if input != 1:
         print(time.asctime(now))
-        camera.start_recording('/media/pi/Lexar/test_video/')
+        camera.start_recording('/media/pi/Lexar/test_video/video.h264') #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
         time.sleep(0.05)   # Wait slightly for debounce         
