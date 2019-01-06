@@ -2,15 +2,15 @@
 from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
-import datetime
-#import logging 
+import datetime 
 
 # Variables
 camera = PiCamera()
 PIN = 4                                # Pin we are using to read the IR break beam switch
 prev_input = 0             # Variable to track if trigger beam is broken
-now = time.localtime(time.time())
-timestamp = datetime.now().strftime("%y%m%d_%H%M%S")
+now = time.localtime(time.time()) #Variable plugged into asci time to allow for readable date print out
+timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
+
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)          # GPIO layout mode      
 GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
