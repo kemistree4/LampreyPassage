@@ -26,7 +26,8 @@ while True:
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
-        time.sleep(0.05)   # Wait slightly for debounce         
+        
+    time.sleep(0.05)   # Wait slightly for debounce         
 
 #code also needs to:
   #send an email to my work email with time of detection (beam is broken)
