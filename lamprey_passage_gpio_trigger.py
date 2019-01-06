@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 camera = PiCamera()
 PIN = 4                                # Pin we are using to read the IR break beam switch
 prev_input = 0             # Variable to track if trigger beam is broken
-
+now = time.localtime(time.time())
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)          # GPIO layout mode      
 GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
@@ -19,7 +19,7 @@ while True:
 
     # If the last reading was low and this one high, record for 30 secs
     if not input == 1:
-        print(time.time())
+        print(time.asctime(now))
         print('Lamprey Detected')
         camera.start_recording('/media/pi/Lexar/test_video/video.h264')
         time.sleep(30)
