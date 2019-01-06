@@ -18,15 +18,13 @@ while True:
     # Read the switch value
     input = GPIO.input(PIN)
 
-    # If the last reading was low and this one high, record for 30 secs
+    # If the GPIO reading goes from high to low, record for 30 secs
     if input != 1:
         print(time.asctime(now))
-        camera.start_recording('/media/pi/Lexar/test_video/video.h264')
-        time.sleep(30)
+        camera.start_recording('/media/pi/Lexar/test_video/')
+        camera.wait_recording(30)
         camera.stop_recording()
-                    
-    # Wait slightly for debounce
-    time.sleep(0.05)
+        time.sleep(0.05)   # Wait slightly for debounce         
 
 #code also needs to:
   #send an email to my work email with time of detection (beam is broken)
