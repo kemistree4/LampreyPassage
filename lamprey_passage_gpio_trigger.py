@@ -2,7 +2,8 @@
 from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
-#import logging
+import datetime
+#import logging 
 
 # Variables
 camera = PiCamera()
