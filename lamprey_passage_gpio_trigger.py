@@ -8,7 +8,6 @@ import datetime
 camera = PiCamera()
 PIN = 4                                # Pin we are using to read the IR break beam switch
 prev_input = 0                         # Variable to track if trigger beam is broken
-now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
@@ -21,6 +20,7 @@ while True:
 
     # If the GPIO reading goes from high to low, record for 30 secs
     if input != 1:
+        now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
         print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
