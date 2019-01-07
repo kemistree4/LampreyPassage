@@ -6,17 +6,17 @@ import datetime
 
 # Variables
 camera = PiCamera()
-PIN = 4                                # Pin we are using to read the IR break beam switch
-prev_input = 0                         # Variable to track if trigger beam is broken
+BEAM_PIN = 4                                # Pin we are using to read the IR break beam switch
+LED_PIN = 17                                # Pin we are using to activate the LED
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
-GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
-
+GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
+GPIO.setup(LED_PIN, GPIO.OUT)
 # Loop checking the switch
 while True:
     # Read the switch value
-    input = GPIO.input(PIN)
+    input = GPIO.input(BEAM_PIN)
 
     # If the GPIO reading goes from high to low, record for 30 secs
     if input != 1:
@@ -26,6 +26,11 @@ while True:
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
+        
+    if input!= 1:
+        GPIO.output(17,GPIO.HIGH)
+        time.sleep(30)
+        GPIO.output(17,GPIO.HIGH)
         
     #Debounce wait
     time.sleep(0.05)            
