@@ -3,6 +3,7 @@ from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
 import datetime 
+import csv
 
 # Variables
 camera = PiCamera()
@@ -28,9 +29,7 @@ while True:
         camera.wait_recording(30)
         camera.stop_recording()
         GPIO.output(17,GPIO.LOW)
-            
-    #Debounce wait
-    time.sleep(0.05)            
+        time.sleep(0.05) #Debounce wait
 
 #code also needs to:
   #send an email to my work email with time of detection (beam is broken)
