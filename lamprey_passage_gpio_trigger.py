@@ -14,6 +14,7 @@ LED_PIN = 17                                # Pin we are using to activate the L
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
 GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
 GPIO.setup(LED_PIN, GPIO.OUT)
+
 # Loop checking the switch
 while True:
     # Read the switch value
