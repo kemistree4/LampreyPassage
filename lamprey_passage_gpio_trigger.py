@@ -24,16 +24,20 @@ while True:
     if input != 1:
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
+        csvlog = date.time.datetime.now().strftime("%m%y")
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
         GPIO.output(17,GPIO.LOW)
+        with open("Detection_Log", "w") as csvFile:
+            Fileout = csv.writer(csvFile, delimiter=',', quoting=csv.QUOTE_ALL)
+            Fileout.writerow(csvlog)
+            csvFile.close()
         time.sleep(0.05) #Debounce wait
 
 #code also needs to:
   #send an email to my work email with time of detection (beam is broken)
   #make log file of all detections
   #continue recording if beam is broken past initial 30 secs
-
