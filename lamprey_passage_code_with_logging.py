@@ -30,6 +30,7 @@ while True:
         formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
         hdlr.setFormatter(formatter)
         logger.addHandler(hdlr)
+        logger.error('strftime("%m%d%y_%H%M%S")')
         logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
