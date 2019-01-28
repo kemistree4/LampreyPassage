@@ -9,7 +9,17 @@ import logging
 camera = PiCamera()
 BEAM_PIN = 4                                # Pin we are using to read the IR break beam switch
 LED_PIN = 17                                # Pin we are using to activate the LED
-
+log_time = datetime.datetime.now().strftime('%m%d%y')
+#create logger
+logger = logging.getLogger('myapp')
+logger.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
+#add a file handler
+hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
+# create a formatter and set the formatter for the handler
+formatter = logging.Formatter('%(asctime)s %(message)s')
+hdlr.setFormatter(formatter)
+#add the handler to the logger
+logger.addHandler(hdlr)
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
 GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
@@ -25,17 +35,6 @@ while True:
         #define time format for filenames and log output
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
-        log_time = datetime.datetime.now().strftime('%m%d%y')
-        #create logger
-        logger = logging.getLogger('myapp')
-        logger.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
-        #add a file handler
-        hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
-        # create a formatter and set the formatter for the handler
-        formatter = logging.Formatter('%(asctime)s %(message)s')
-        hdlr.setFormatter(formatter)
-        #add the handler to the logger
-        logger.addHandler(hdlr)
         logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
