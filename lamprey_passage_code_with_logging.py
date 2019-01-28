@@ -36,8 +36,7 @@ while True:
         hdlr.setFormatter(formatter)
         #add the handler to the logger
         logger.addHandler(hdlr)
-        logger.error('Lamprey Detected1!')
-        logger.info('Lamprey Detected2!')
+        logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
