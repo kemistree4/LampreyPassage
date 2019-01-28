@@ -27,7 +27,7 @@ while True:
         csv_time = datetime.datetime.now().strftime('%m%y')
         with open('{}.csv'.format(csv_time), 'a') as f:
             thewriter = csv.writer(f)
-            thewriter.writerow((csvtime,))
+            thewriter.writerow((timestamp,))
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
