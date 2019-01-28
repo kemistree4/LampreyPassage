@@ -38,7 +38,6 @@ while True:
         logger.addHandler(hdlr)
         logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
-        print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
