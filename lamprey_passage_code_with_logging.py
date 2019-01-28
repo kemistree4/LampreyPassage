@@ -3,12 +3,18 @@ from picamera import PiCamera
 import time
 import RPi.GPIO as GPIO
 import datetime 
-import csv
+import logging
 
 # Variables
 camera = PiCamera()
 BEAM_PIN = 4                                # Pin we are using to read the IR break beam switch
 LED_PIN = 17                                # Pin we are using to activate the LED
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('/media/pi/Lexar/{}.log'.format(log_time))
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr)
+logger.setLevel(logging.WARNING)
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
@@ -24,10 +30,8 @@ while True:
     if input != 1:
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
-        csv_time = datetime.datetime.now().strftime('%m%y')
-        with open('{}.csv'.format(csv_time), 'a') as f:
-            thewriter = csv.writer(f)
-            thewriter.writerow((timestamp,))
+        log_time = datetime.datetime.now().strftime('%m%y')
+        logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
