@@ -9,12 +9,6 @@ import logging
 camera = PiCamera()
 BEAM_PIN = 4                                # Pin we are using to read the IR break beam switch
 LED_PIN = 17                                # Pin we are using to activate the LED
-logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler('/media/pi/Lexar/{}.log'.format(log_time))
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-hdlr.setFormatter(formatter)
-logger.addHandler(hdlr)
-logger.setLevel(logging.WARNING)
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
@@ -31,6 +25,12 @@ while True:
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
         log_time = datetime.datetime.now().strftime('%m%y')
+        logger = logging.getLogger('myapp')
+        hdlr = logging.FileHandler('/media/pi/Lexar/{}.log'.format(log_time))
+        formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+        hdlr.setFormatter(formatter)
+        logger.addHandler(hdlr)
+        logger.setLevel(logging.WARNING)
         logger.info('Lamprey Detected!')
         GPIO.output(17,GPIO.HIGH)
         print(time.asctime(now))
