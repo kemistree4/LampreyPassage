@@ -28,7 +28,7 @@ while True:
         log_time = datetime.datetime.now().strftime('%m%d%y')
         #create logger
         logger = logging.getLogger('myapp')
-        logging.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
+        logger.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
         #add a file handler
         hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
         # create a formatter and set the formatter for the handler
