@@ -22,13 +22,20 @@ while True:
 
     # If the GPIO reading goes from high to low, record for 30 secs
     if input != 1:
+        #define time format for filenames and log output
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
-        log_time = datetime.datetime.now().strftime('%m%y')
+        log_time = datetime.datetime.now().strftime('%m%d%y')
+        #create logger
         logger = logging.getLogger('myapp')
+        logging.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
+        #add a file handler
         hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
+        hdlr.setLevel(logging.DEBUG) # ensures all messages are logged to file
+        # create a formatter and set the formatter for the handler
         formatter = logging.Formatter('%(asctime)s %(message)s')
         hdlr.setFormatter(formatter)
+        #add the handler to the logger
         logger.addHandler(hdlr)
         logger.error('Lamprey Detected!')
         logger.info('Lamprey Detected!')
