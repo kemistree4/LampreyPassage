@@ -31,7 +31,7 @@ while True:
         camera.wait_recording(30)
         camera.stop_recording()
         GPIO.output(17,GPIO.LOW)
-        with open('/media/pi/Lexar/log/{}.csv'.format(csv_time)', 'a') as log:
+        with open('/media/pi/Lexar/log/log.csv', 'a') as log:
             thewriter = csv.writer(log)
             thewriter.writerow((timestamp,))
             log.write("{0}\n".format(strftime("%Y-%m-%d %H:%M:%S"))
