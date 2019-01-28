@@ -31,7 +31,6 @@ while True:
         logging.setLevel(logging.DEBUG) # log all escalated at and above DEBUG
         #add a file handler
         hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
-        hdlr.setLevel(logging.DEBUG) # ensures all messages are logged to file
         # create a formatter and set the formatter for the handler
         formatter = logging.Formatter('%(asctime)s %(message)s')
         hdlr.setFormatter(formatter)
