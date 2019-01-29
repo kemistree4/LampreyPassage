@@ -20,6 +20,7 @@ formatter = logging.Formatter('%(asctime)s %(message)s')
 hdlr.setFormatter(formatter)
 #add the handler to the logger
 logger.addHandler(hdlr)
+
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
 GPIO.setup(BEAM_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) #Setup the gpio pin we are reading from as a pullup input
