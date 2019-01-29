@@ -42,8 +42,3 @@ while True:
         camera.stop_recording()
         GPIO.output(17,GPIO.LOW)
         time.sleep(0.05) #Debounce wait
-
-#code also needs to:
-  #send an email to my work email with time of detection (beam is broken)
-  #make log file of all detections
-  #continue recording if beam is broken past initial 30 secs
