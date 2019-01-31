@@ -30,7 +30,6 @@ while True:
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
         GPIO.output(17,GPIO.HIGH)
-        #start camera recording for 30 secs
         camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
         camera.wait_recording(30)
         camera.stop_recording()
