@@ -30,9 +30,6 @@ while True:
         now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
         timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S") #Variable to update name of video files with current date and time
         GPIO.output(17,GPIO.HIGH)
-        camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
-        camera.wait_recording(30)
-        camera.stop_recording()
         #add a file handler
         hdlr = logging.FileHandler('/media/pi/Lexar/log/{}.log'.format(log_time))
         # create a formatter and set the formatter for the handler
@@ -42,5 +39,8 @@ while True:
         logger.addHandler(hdlr)
         logger.info('Lamprey Detected!')
         logger.removeHandler(hdlr)
+        camera.start_recording('/media/pi/Lexar/test_video/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
+        camera.wait_recording(30)
+        camera.stop_recording()
         GPIO.output(17,GPIO.LOW)
         time.sleep(0.05) #Debounce wait
