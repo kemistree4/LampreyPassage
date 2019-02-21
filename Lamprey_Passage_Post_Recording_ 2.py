@@ -7,7 +7,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.IN, GPIO.PUD_UP)
 
 with picamera.PiCamera() as camera:
-    stream = picamera.PiCameraCircularIO(camera, seconds=20)
+    stream = picamera.PiCameraCircularIO(camera, seconds=30)
     camera.start_recording(stream, format='h264')
     GPIO.wait_for_edge(4, GPIO.FALLING)
     camera.wait_recording(30)
