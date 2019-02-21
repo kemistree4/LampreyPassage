@@ -20,7 +20,6 @@ def write_video(stream):
 # Variables
 BEAM_PIN = 4                                # Pin we are using to read the IR break beam switch
 LED_PIN = 17                                # Pin we are using to activate the LED
-log_time = datetime.datetime.now().strftime('%m%d%y')
 
 # Setup the GPIO
 GPIO.setmode(GPIO.BCM)                 # GPIO layout mode      
