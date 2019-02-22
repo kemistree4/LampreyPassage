@@ -4,6 +4,7 @@ import picamera
 import RPi.GPIO as GPIO
 import datetime 
 import logging
+import time
 
 def write_video(stream):
     print('Writing video!')
