@@ -32,7 +32,7 @@ with picamera.PiCamera() as camera:
     camera.start_recording(stream, format='h264')
     try:
         while True:
-            camera.wait_recording(1)
+            input = GPIO.input(BEAM_PIN)
             if input != 1:
                 #define time format for filenames and log output
                 now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
