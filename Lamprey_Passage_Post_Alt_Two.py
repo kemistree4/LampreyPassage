@@ -34,7 +34,7 @@ with picamera.PiCamera() as camera:
     try:
         while True:
             camera.wait_recording(0.25)
-            input = GPIO.input(Beam_PIN)
+            input = GPIO.input(BEAM_PIN)
             if input != 1:
                 GPIO.output(17,GPIO.HIGH)
                 # Keep recording for 10 seconds and only then write the
