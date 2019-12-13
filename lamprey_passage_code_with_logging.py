@@ -4,6 +4,7 @@ import time
 import RPi.GPIO as GPIO
 import datetime 
 import logging
+import schedule
 
 # Variables
 camera = PiCamera()
@@ -40,3 +41,17 @@ while True:
         camera.wait_recording(30)
         camera.stop_recording()
         time.sleep(0.05) #Debounce wait
+        
+def test_video():
+    now = time.localtime(time.time())      #Variable plugged into asci time to allow for readable date print out 
+    timestamp = datetime.datetime.now().strftime("%m%d%y_%H%M%S")
+    camera.start_recording('/media/pi/F8AF-129D/test_videos/{}.h264'.format(timestamp)) #Recording video file to Lexar thumb drive
+    camera.wait_recording(15)
+    camera.stop_recording()
+    time.sleep(0.5)
+    return
+
+#Makes a test video everyday at 6 am and saves it to the test_video folder.
+schedule.every().day.at("06:00").do(test_video,"Time for the 6 am test video")
+
+
