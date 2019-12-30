@@ -23,7 +23,7 @@
 ########################################
 
 username = 'warmspringslaps1' #you don't need the "@gmail.com" bit.
-password = 'CRFPO2500'
+password = 'zdzp lfld uykt ndgm'
 
 ############################
 # General Email Parameters #
@@ -57,22 +57,23 @@ import time
 #takes either "wet" or "dry" as the condition.
 def email(condition):
     print("Attempting to send email")
+    seperator = "\r\n"
     if condition == 'wet':
-        Body = string.join((
+        Body = seperator.join((
         "From: %s" % From,
         "To: %s" % To,
         "Subject: %s" % Subject_wet,
         "",
         Body_wet,
-        ), "\r\n")
+        ),)
     if condition == 'dry':        
-        Body = string.join((
+        Body = seperator.join((
             "From: %s" % From,
             "To: %s" % To,
             "Subject: %s" % Subject_dry,
             "",
             Body_dry,
-            ), "\r\n")
+            ),)
     
     # The actual mail send
     server = smtplib.SMTP('smtp.gmail.com:587')
@@ -126,14 +127,14 @@ print('Waiting for wetness...')
 while True:
     time.sleep(1) # check for wetness every second
     if RCtime(18) == 0:
-        light_on(17)
+        light_off(17)
         print("Sensor is wet")
         email('wet')
         print("Waiting for dryness...")
         while True:
             time.sleep(1) # check for dryness every second
             if RCtime(18) == 1:
-                light_off(17)
+                light_on(17)
                 print("Sensor is dry again")
                 email('dry')
                 print("Waiting for wetness...")
