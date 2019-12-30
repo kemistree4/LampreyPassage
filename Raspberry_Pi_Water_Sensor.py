@@ -1,37 +1,30 @@
 #!/usr/bin/python
 
-#########
-# About #
-#########
+
+# About 
 
 # This script uses a Raspberry Pi to sense for the presense or absense of water. 
 # If there is water, an email is sent and a light comes on.
 # When it's dry again, another email is sent, and the light turns off.
 
-########################################
-# Gmail login credentials to send email#
-########################################
+
+# Gmail login credentials to send email
 
 username = 'warmspringslaps1' #you don't need the "@gmail.com" bit.
 password = 'zdzp lfld uykt ndgm' #Had to turn on allowances for less security apps, two factor authentication, and generate an app passoword for this to work
 
-############################
-# General Email Parameters #
-############################ 
+# General Email Parameters 
 
 From = "warmspringslaps1@gmail.com"
 To =  "rikeem_sholes@fws.gov"
 
-#######################################
-# Email Parameters when sensor is Wet #
-#######################################
+
+# Email Parameters when sensor is Wet 
 
 Subject_wet = "RPi Water Sensor is WET"
 Body_wet = "Your water sensor is wet."
 
-#######################################
-# Email Parameters when semsor is Dry #
-#######################################
+# Email Parameters when semsor is Dry 
 
 Subject_dry = "RPi Water Sensor is DRY"
 Body_dry = " Your water sensor is dry again!"
