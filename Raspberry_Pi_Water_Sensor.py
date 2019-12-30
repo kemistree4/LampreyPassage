@@ -29,8 +29,8 @@ password = 'CRFPO2500'
 # General Email Parameters #
 ############################ 
 
-From = "senderaddress@domain.com"
-To =  "recipientaddress#domain.com"
+From = "warmspringslaps1@gmail.com"
+To =  "rikeem_sholes@fws.gov"
 
 #######################################
 # Email Parameters when sensor is Wet #
@@ -84,7 +84,7 @@ def email(condition):
     server.quit()
     print("Email sent.")
 
-#Tests whether wter is present.
+#Tests whether water is present.
 # returns 0 for dry
 # returns 1 for wet
 # tested to work on pin 18 
@@ -104,17 +104,17 @@ def RCtime (RCpin):
         if (GPIO.input(RCpin) != GPIO.LOW):
             return 1
 
-# Turns on the piezo buzzer 
+# Turns on the indicator light 
 # tested to work on pin 17
-def buzz_on (pin):
+def light_on (pin):
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.HIGH)
 
-# Turns off the piezo buzzer
+# Turns off the indicator light
 # tested to work on pin 17
-def buzz_off(pin):
+def light_off(pin):
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.OUT)
@@ -125,16 +125,16 @@ def buzz_off(pin):
 print('Waiting for wetness...')
 while True:
     time.sleep(1) # check for wetness every second
-    if RCtime(18) == 1:
-        buzz_on(17)
+    if RCtime(18) == 0:
+        light_on(17)
         print("Sensor is wet")
         email('wet')
         print("Waiting for dryness...")
         while True:
             time.sleep(1) # check for dryness every second
-            if RCtime(18) == 0:
-                buzz_off(17)
-                print "Sensor is dry again"
+            if RCtime(18) == 1:
+                light_off(17)
+                print("Sensor is dry again")
                 email('dry')
                 print("Waiting for wetness...")
                 break
