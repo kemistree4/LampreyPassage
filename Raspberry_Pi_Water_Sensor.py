@@ -22,8 +22,8 @@
 # Gmail login credentials to send email#
 ########################################
 
-username = 'exampleusername' #you don't need the "@gmail.com" bit.
-password = 'examplepassword'
+username = 'warmspringslaps1' #you don't need the "@gmail.com" bit.
+password = 'CRFPO2500'
 
 ############################
 # General Email Parameters #
@@ -56,7 +56,7 @@ import time
 
 #takes either "wet" or "dry" as the condition.
 def email(condition):
-    print "Attempting to send email"
+    print("Attempting to send email")
     if condition == 'wet':
         Body = string.join((
         "From: %s" % From,
@@ -77,12 +77,12 @@ def email(condition):
     # The actual mail send
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
-    print "Logging in..."
+    print("Logging in...")
     server.login(username,password)
-    print "Logged in as "+username+"."
+    print("Logged in as "+username+".")
     server.sendmail(From, [To], Body)
     server.quit()
-    print "Email sent."
+    print("Email sent.")
 
 #Tests whether wter is present.
 # returns 0 for dry
@@ -122,19 +122,19 @@ def buzz_off(pin):
 
 # Main Loop
 
-print 'Waiting for wetness...'
+print('Waiting for wetness...')
 while True:
     time.sleep(1) # check for wetness every second
     if RCtime(18) == 1:
         buzz_on(17)
-        print "Sensor is wet"
+        print("Sensor is wet")
         email('wet')
-        print "Waiting for dryness..."
+        print("Waiting for dryness...")
         while True:
             time.sleep(1) # check for dryness every second
             if RCtime(18) == 0:
                 buzz_off(17)
                 print "Sensor is dry again"
                 email('dry')
-                print "Waiting for wetness..."
+                print("Waiting for wetness...")
                 break
