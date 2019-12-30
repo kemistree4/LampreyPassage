@@ -27,7 +27,6 @@ Subject_dry = "RPi Water Sensor is DRY"
 Body_dry = " Your water sensor is dry again!"
 
 import smtplib
-from email.mime.text import MIMEText
 import RPi.GPIO as GPIO
 import string
 import time
