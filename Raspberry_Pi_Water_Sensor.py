@@ -5,25 +5,15 @@
 #########
 
 # This script uses a Raspberry Pi to sense for the presense or absense of water. 
-# If there is water, an email is sent and a buzzer goes off.
-# When it's dry again, another email is sent, and the buzzer turns off.
-
-# To run this script at boot, edit /etc/rc.local to include (no quotes) 'sudo python <pathtoyourscript>.py'
-# Schematic here: http://fritzing.org/projects/raspberry-pi-water-sensor/
-
-
-###########
-# License #
-###########
-# Released under the WTFPL. 
-#Full text and more information here: http://en.wikipedia.org/wiki/WTFPL
+# If there is water, an email is sent and a light comes on.
+# When it's dry again, another email is sent, and the light turns off.
 
 ########################################
 # Gmail login credentials to send email#
 ########################################
 
 username = 'warmspringslaps1' #you don't need the "@gmail.com" bit.
-password = 'zdzp lfld uykt ndgm'
+password = 'zdzp lfld uykt ndgm' #Had to turn on allowances for less security apps, two factor authentication, and generate an app passoword for this to work
 
 ############################
 # General Email Parameters #
