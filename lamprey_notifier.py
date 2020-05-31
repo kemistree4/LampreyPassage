@@ -13,22 +13,38 @@ import os
 from datetime import timedelta
 import sys
 
+try:
+    import httplib
+except:
+    import http.client as httplib
+    
+def have_internet():
+    conn = httplib.HTTPConnection("www.google.com", timeout=5)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except:
+        conn.close()
+        return False
+    
 #Trigger count variables
 today_count = 0
 yesterday_count = 0
 
 # General Email Parameters 
 username = 'warmspringslaps1' #you don't need the "@gmail.com" bit.
-password = 'zdzp lfld uykt ndgm' #Had to turn on allowances for less security apps, two factor authentication, and generate an app passoword for this to work
+password = "qfeq uwac swuu ufrt" #'zdzp lfld uykt ndgm' #Had to turn on allowances for less security apps, two factor authentication, and generate an app passoword for this to work
 From = "warmspringslaps1@gmail.com"
-To =  "rikeem_sholes@fws.gov, rikeem.sholes@gmail.com"
+recipients = ["rikeem.sholes@gmail.com", "rikeem_sholes@fws.gov"]
+To =  ", ".join(recipients)
 
 
 def email(condition = "start"):
     print("Attempting to send email")
     seperator = "\r\n"
     Subject_notifier = "Daily Trap Update"
-    Body_notifier = "Yesterday you had " + str(yesterday_count) + " trigger(s). So far today you have " + str(today_count) + " trigger(s)."
+    Body_notifier = "This is your daily report for Eel Lake lamprey monitor. Yesterday you had " + str(yesterday_count) + " trigger(s). So far today you have " + str(today_count) + " trigger(s)."
     if condition == 'start':        
         Body = seperator.join((
             "From: %s" % From,
@@ -61,6 +77,8 @@ for file in video_files:
         yesterday_count = yesterday_count + 1
     else:
         continue
- 
-email('start')
-sys.exit()
+if have_internet() == True:
+    email('start')
+    sys.exit()
+else:
+    sys.exit()
