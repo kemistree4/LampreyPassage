@@ -8,6 +8,7 @@ Created on Wed Jun  3 06:19:35 2020
 
 import pandas as pd
 import csv
+import datetime
 
 def data_converter(file_path = "/home/rikeem/Desktop/CAL_09232019_143311_raw.txt"):
 
@@ -29,6 +30,10 @@ def data_converter(file_path = "/home/rikeem/Desktop/CAL_09232019_143311_raw.txt
     
    #Removes asterisks from first F value column
     df['F_value_1'] = df['F_value_1'].str.replace(r"*", "")
+    
+    #Converts date into accepted format
+    df["Date"] = pd.to_datetime(df.Date)
+    df["Date"] = df["Date"].dt.strftime("%m/%d/%Y")
     
     #Generates a text file
     df.to_csv(r"/home/rikeem/Desktop/PIT_Tag_script_output.txt", header=None, index=None, sep=' ', mode='a')
