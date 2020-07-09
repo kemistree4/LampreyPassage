@@ -13,7 +13,7 @@ from csv import writer
 from csv import reader
 
 #Function that takes in a raw file and spits out data formatted for entry with an added footer
-def data_converter(file_path = "/home/rikeem/Desktop/CAL_09232019_143311_raw.txt"):
+def data_converter(file_path = "/home/kemistree4/Desktop/CAL202006 16, 112805.txt"):
 
     data = open(file_path)
     csv_data = csv.reader(data)
@@ -36,11 +36,11 @@ def data_converter(file_path = "/home/rikeem/Desktop/CAL_09232019_143311_raw.txt
     df['F_value_1'] = df['F_value_1'].str.replace(r"*", "")
     
     #Converts date into accepted format and adds pipe prefix
-    df["Date"] = pd.to_datetime(df.Date)
-    df["Date"] = df["Date"].dt.strftime("%m/%d/%Y")
+    df["Date"] = pd.to_datetime(df.Date, dayfirst = True)
+    df["Date"] = df["Date"].dt.strftime("%m/%d/%y")
     
     #Generates a text file
-    csv_path = "/home/rikeem/Desktop/PIT_Tag_script_output.txt"
+    csv_path = "/home/kemistree4/Desktop/CAL2020_final.txt"
     df.to_csv(csv_path, header=None, index=None, sep=' ', mode='a')
     
     #open csv to add footer
